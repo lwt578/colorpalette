@@ -1,0 +1,20 @@
+library(tidyverse)
+
+
+clr <- data.frame(no=1:657,color=colors()) %>% 
+  rbind(data.frame(no=658:660,color=rep('white',3)))
+
+clr <- clr %>% 
+  mutate(x=rep(1:33*30,20)) %>% 
+  mutate(y=rep(1:20*5,each=33))
+
+
+ggplot(clr, aes(xmin=x-12,xmax=x+12, ymin=y-1,ymax=y+1)) +
+  geom_rect(aes(fill=I(color)),colour = "black")+
+  lims(y=c(110,0))+
+  theme_void()+
+  geom_text(aes(x,y-2.5,label=color),size=1.5)
+
+
+
+
