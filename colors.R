@@ -1,4 +1,5 @@
 library(tidyverse)
+library(plotly)
 
 # 色板 ----
 
@@ -30,13 +31,6 @@ clr <- clr %>%
 
 l <- split(clr,clr$l)
 
-ggplot(l[[1]], aes(xmin=x-2,xmax=x+2, ymin=y-1,ymax=y+1)) +
-  geom_rect(aes(fill=I(color)),colour = "black")+
-  lims(y=c(35,0))+
-  theme_void()+
-  geom_text(aes(x,y-1.5,label=color),size=3)
-
-
 f <- function(df){
   ggplot(df, aes(xmin=x-2,xmax=x+2, ymin=y-1,ymax=y+1)) +
     geom_rect(aes(fill=I(color)),colour = "black")+
@@ -49,3 +43,6 @@ f <- function(df){
 
 photo <- map(l,f)
 photo
+
+
+  
