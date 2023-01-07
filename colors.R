@@ -1,7 +1,22 @@
 library(tidyverse)
-library(plotly)
+library(grid)
 
-# 色板 ----
+# 色板(grid) ----
+a <- colors()
+
+grid.rect(x = rep(seq(0.04,0.96,length=22),times=30),
+          y = rep(seq(0.95,0.05,length=30),each=22),
+          width = 0.035,
+          height = 0.015,
+          gp=gpar(fill=a,lwd=0.5))
+
+grid.text(a,
+          x=rep(seq(0.04,0.96,length=22),times=30),
+          y = rep(seq(0.965,0.065,length=30),each=22),
+          gp=gpar(fontsize=15)
+)
+
+# 色板(ggplot2) ----
 
 clr <- data.frame(no=1:657,color=colors()) %>% 
   rbind(data.frame(no=658:660,color=rep('white',3)))
