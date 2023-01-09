@@ -2,6 +2,7 @@ library(tidyverse)
 library(grid)
 
 # 色板(grid) ----
+
 a <- colors()
 
 grid.rect(x = rep(seq(0.04,0.96,length=22),times=30),
@@ -33,31 +34,28 @@ ggplot(clr, aes(xmin=x-12,xmax=x+12, ymin=y-1,ymax=y+1)) +
   theme_void()+
   geom_text(aes(x,y-2,label=color),size=4)
 
-# 色板升级版 ----
+# 色板升级版(去掉重复颜色) ----
 
-clr <- data.frame(no=1:657,color=colors()) %>% 
-  rbind(data.frame(no=658:660,color=rep('white',3)))
+clr <- data.frame(no=1:502,color=colors(TRUE)) %>% 
+  rbind(data.frame(no=503:510,color=rep('white',8))) %>% 
+  mutate(l=c(rep(1:10,each=50),rep(10,10))) %>% 
+  mutate(x=rep(1:5*5,102)) %>% 
+  mutate(y=c(rep(rep(1:10*4,each=5),10),rep(11*4,10))) %>% 
+  slice_head(n=502)
 
-clr <- clr %>% 
-  mutate(l=rep(1:10,each=66)) %>% 
-  mutate(x=rep(1:6*5,110)) %>% 
-  mutate(y=rep(rep(1:11*3,each=6),10)) %>% 
-  slice_head(n=657)
 
 l <- split(clr,clr$l)
+
 
 f <- function(df){
   ggplot(df, aes(xmin=x-2,xmax=x+2, ymin=y-1,ymax=y+1)) +
     geom_rect(aes(fill=I(color)),colour = "black")+
-    lims(y=c(35,0))+
+    lims(y=c(50,0))+
     theme_void()+
-    geom_text(aes(x,y-1.5,label=color),size=3)
-  
-  
+    geom_text(aes(x,y-2,label=color),size=4)
 }
+
 
 photo <- map(l,f)
 photo
-
-
   

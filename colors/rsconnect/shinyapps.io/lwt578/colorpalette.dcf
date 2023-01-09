@@ -5,9 +5,9 @@ account: lwt578
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7964282
-bundleId: 6689485
+bundleId: 6712364
 url: https://lwt578.shinyapps.io/colorpalette/
-when: 1672656820.50038
-lastSyncTime: 1672656820.50038
+when: 1673260245.18541
+lastSyncTime: 1673260245.18542
 asMultiple: FALSE
 asStatic: FALSE
